@@ -7,7 +7,7 @@
 
 #include <QDate>
 #include <QFont>
-#include <QMap>
+#include <QHash>
 #include <QPalette>
 #include <QColor>
 #include <QStandardPaths>
@@ -19,6 +19,10 @@ class GlobalData
 {
 public:
   ///UI
+
+  static int window_defaultWidth;
+  static int window_defaultHeight;
+
   static QFont font_main;
   static QFont font_chatTextEditor;
   static QFont font_chatBubble;
@@ -29,11 +33,11 @@ public:
   static QFont font_scrollStackSubtitle;
 
   //!base color
-  static QColor bc_darkGrey;
-  static QColor bc_lightGrey;
-  static QColor bc_brown;
-  static QColor bc_hiveYellow;
-  static QColor bc_lightYellow;
+  static QColor color_darkGrey;
+  static QColor color_lightGrey;
+  static QColor color_brown;
+  static QColor color_hiveYellow;
+  static QColor color_lightYellow;
 
   static QColor color_window;
   static QColor color_alphaTab;
@@ -49,20 +53,23 @@ public:
   static QPalette palette_txt_brown;
 
   ///data
-  static char g_version[3];
-  static Settings::SettingStruct g_settings_struct;
-  static QMap<QString, UsrProfileStruct> saved_usr_profile_map;
-  static QMap<QString, UsrProfileStruct> online_usr_profile_map;
+  static int current_version[3];
+  static Settings::SettingsStruct settings_struct;
+  static UpdateStruct update_struct;
+  static QUrl update_url;
+  static QUrl download_url;
 
-  static QMap<QString, UsrData*> online_usr_data_map;//used
-
+  static QHash<QString, UsrProfileStruct> saved_usr_profile_hash;
+  static QHash<QString, UsrData*> online_usr_data_hash;//used
 
   ///net
   static QString g_localHostIP;
-
   ///other
-  static QString g_currentTime();
+  static QString getCurrentTime();
   static QString getRandomString(const int &digit);
+
+
+  static bool versionCompare(const int (&old)[3], const int (&fresh)[3]);
 
   ///debug
   static void TEST_printUsrProfileStruct(const UsrProfileStruct &usrProfileStruct, const QString &str);

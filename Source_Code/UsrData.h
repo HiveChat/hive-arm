@@ -27,10 +27,10 @@ public:
   QJsonArray* flipDown();
 
   UsrProfileStruct* usrProfileStruct(){return &usr_profile_struct;}
-  QString key() {return usr_profile_struct.key_str;}
-  QString name() {return usr_profile_struct.name_str;}
-  QString avatar() {return usr_profile_struct.avatar_str;}
-  QString ip() {return usr_profile_struct.ip_str;}
+  QString key() {return usr_profile_struct.key;}
+  QString name() {return usr_profile_struct.name;}
+  QString avatar() {return usr_profile_struct.avatar;}
+  QString ip() {return usr_profile_struct.ip;}
   int unreadMessageNumber() {return unread_message_list.count();}
   int currentHistoryBundleIndex(){return current_history_bundle_index;}
 
@@ -40,7 +40,7 @@ private:
   UsrProfileStruct usr_profile_struct;
 
   const int max_bundle_capacity = 100;
-  const QString app_data_local_path = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation);
+  const QString app_data_local_path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
   const QString usr_path = app_data_local_path + "/usr/";
   QString history_path;
   QString usr_key;

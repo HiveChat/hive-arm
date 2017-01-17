@@ -5,89 +5,105 @@
 #-------------------------------------------------
 
 QT       += core gui
-QT	 += network
+QT   += network
 QT       += concurrent
 CONFIG   += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 macx{
-    QT	 += macextras
+    QT   += macextras
 #    INCLUDEPATH += /usr/include
 }
 
+win32{
+    RC_FILE = /Src/hive.rc
+}
 
 TARGET = Hive!
 TEMPLATE = app
 
-ICON = hive.icns
-
-SOURCES += main.cpp\
-    GuiCentralWidget.cpp \
-    GuiTabBlock.cpp \
-    GuiHomeTab.cpp \
-    GuiMainBlock.cpp \
-    GuiChatTab.cpp \
-    GuiChatStack.cpp \
-    GuiLabelButton.cpp \
-    GuiCombWidget.cpp \
-    GuiAvatarButton.cpp \
-    GuiChatBubble.cpp \
-    GlobalData.cpp \
-    GuiMenuButton.cpp \
-    GuiScrollStack.cpp \
-    GuiSettingsTab.cpp \
-    GuiColorPicker.cpp \
-    GuiSettingsStack_messaging.cpp \
-    GuiSettingsStack_profile.cpp \
-    GuiSettingsStack_questions.cpp \
-    GuiHomeStack_storage.cpp \
-    ThreadNet.cpp \
-    ThreadData.cpp \
+SOURCES += \
+    main.cpp \
     Hive.cpp \
-    GuiHomeStack_network.cpp \
-    GuiHomeStack_list.cpp \
-    GuiHomeStack_welcome.cpp \
-    ThreadSocketTCP.cpp \
+    GlobalData.cpp \
     GlobalType.cpp \
-    GuiBadgeIcon.cpp \
-    UsrData.cpp
+    UsrData.cpp \
+\
+    Gui/CentralWidget.cpp \
+    Gui/TabBlock.cpp \
+    Gui/HomeTab.cpp \
+    Gui/MainBlock.cpp \
+    Gui/ChatTab.cpp \
+    Gui/ChatStack.cpp \
+    Gui/SettingsTab.cpp \
+    Gui/SettingsStack_messaging.cpp \
+    Gui/SettingsStack_profile.cpp \
+    Gui/SettingsStack_questions.cpp \
+    Gui/SettingsStack_update.cpp \
+    Gui/HomeStack_storage.cpp \
+    Gui/HomeStack_network.cpp \
+    Gui/HomeStack_list.cpp \
+    Gui/HomeStack_welcome.cpp \
+\
+    Gui/Frameworks/CombWidget.cpp \
+    Gui/Frameworks/ScrollStack.cpp \
+    Gui/Frameworks/MenuButton.cpp \
+\
+    Gui/Frameworks/Widgets/TextBubble.cpp \
+    Gui/Frameworks/Widgets/LabelButton.cpp \
+    Gui/Frameworks/Widgets/AvatarButton.cpp \
+    Gui/Frameworks/Widgets/ColorPicker.cpp \
+    Gui/Frameworks/Widgets/BadgeIcon.cpp \
+\
+    Network/TcpServer.cpp \
+    Network/NetworkManager.cpp \
+\
+    Data/DataManager.cpp
 
 HEADERS  += \
-    GuiCentralWidget.h \
-    GuiTabBlock.h \
-    GuiHomeTab.h \
-    GuiMainBlock.h \
-    GuiChatTab.h \
-    GuiChatStack.h \
-    GuiLabelButton.h \
-    GuiCombWidget.h \
-    GuiAvatarButton.h \
-    GuiChatBubble.h \
-    GlobalData.h \
-    GuiMenuButton.h \
-    GuiScrollStack.h \
-    GuiSettingsTab.h \
-    GuiColorPicker.h \
-    GuiSettingsStack_messaging.h \
-    GuiSettingsStack_profile.h \
-    GuiSettingsStack_questions.h \
-    GuiHomeStack_storage.h \
-    ThreadNet.h \
-    ThreadData.h \
     Hive.h \
-    GuiHomeStack_network.h \
-    GuiHomeStack_list.h \
-    GuiHomeStack_welcome.h \
-    ThreadSocketTCP.h \
+    GlobalData.h \
     GlobalType.h \
-    GuiBadgeIcon.h \
-    UsrData.h
+    UsrData.h \
+\
+    Gui/CentralWidget.h \
+    Gui/TabBlock.h \
+    Gui/HomeTab.h \
+    Gui/MainBlock.h \
+    Gui/ChatTab.h \
+    Gui/ChatStack.h \
+    Gui/SettingsTab.h \
+    Gui/SettingsStack_messaging.h \
+    Gui/SettingsStack_profile.h \
+    Gui/SettingsStack_questions.h \
+    Gui/SettingsStack_update.h \
+    Gui/HomeStack_storage.h \
+    Gui/HomeStack_network.h \
+    Gui/HomeStack_list.h \
+    Gui/HomeStack_welcome.h \
+\
+    Gui/Frameworks/CombWidget.h \
+    Gui/Frameworks/ScrollStack.h \
+    Gui/Frameworks/MenuButton.h \
+\
+    Gui/Frameworks/Widgets/TextBubble.h \
+    Gui/Frameworks/Widgets/LabelButton.h \
+    Gui/Frameworks/Widgets/AvatarButton.h \
+    Gui/Frameworks/Widgets/ColorPicker.h \
+    Gui/Frameworks/Widgets/BadgeIcon.h \
+\
+    Network/TcpServer.h \
+    Network/NetworkManager.h \
+\
+    Data/DataManager.h
+
+ICON = Src/hive.icns
 
 RESOURCES += \
-    qss.qrc \
-    img.qrc \
-    font.qrc \
-    icon.qrc
+    Src/qss.qrc \
+    Src/img.qrc \
+    Src/font.qrc
+#    Src/icon.qrc
 
 

@@ -1,19 +1,19 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "GuiCentralWidget.h"
 #include "GlobalData.h"
+#include "Data/DataManager.h"
+#include "Network/NetworkManager.h"
+#include "Gui/CentralWidget.h"
 
-#include "ThreadData.h"
-#include "ThreadNet.h"
 
 #include <QApplication>
 #include <QSystemTrayIcon>
 
-#ifdef Q_OS_MAC
-//#include <QtMacExtras>
+#ifdef Q_OS_OSX
 #include <QtMac>
 #endif
+
 
 class Hive : public QObject
 {
@@ -24,16 +24,18 @@ public:
   ~Hive();
 
   GuiCentralWidget *gui_central_widget;
-  ThreadData *thread_data;
-  ThreadNet *thread_net;
+  DataManager *data_manager;
+  NetworkManager *network_manager;
 
-private:
-  QJsonObject wrapTextMessage(const Message::TextMessageStruct &textMessageStruct);
-  QJsonObject wrapFileMessage(const Message::FileInfoStruct &fileMessageStruct);
+  QThread *data_thread;
+  QThread *network_thread;
+
+//private:
+//  QJsonObject wrapTextMessage(const Message::TextMessageStruct &textMessageStruct);
+//  QJsonObject wrapFileMessage(const Message::FileInfoStruct &fileMessageStruct);
 
 private slots:
   void onTextMessageToSend(const QString &receiver, const QString &message);
-
 };
 
 #endif // MAINWINDOW_H

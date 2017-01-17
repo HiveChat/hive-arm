@@ -3,52 +3,67 @@
 
 #include <QString>
 #include <QColor>
+#include <QJsonObject>
 
-enum StaticStackType
+namespace GUI
 {
-  NULL_Stack,
-  Home_Welcome,
-  Home_list,
-  Home_Storage,
-  Settings_Messaging,
-  Settings_Profile,
-  Settings_Style,
-  Settings_Questions
-};
+  enum StaticStackType
+  {
+    NULL_Stack,
+    Home_Welcome,
+    Home_list,
+    Home_Storage,
+    Settings_Messaging,
+    Settings_Profile,
+    Settings_Style,
+    Settings_Questions,
+    Settings_Update
+  };
 
-enum BuiltInAvatarType
-{
-  Bee,
-  Disk,
-  Fat,
-  Ladybug,
-  sunflower,
-  worm
-};
+  enum BuiltInAvatarType
+  {
+    Bee,
+    Disk,
+    Fat,
+    Ladybug,
+    sunflower,
+    worm
+  };
 
-enum BuiltInIconType
-{
-  doc,
-  exe,
-  ppt,
-  rar,
-  txt,
-  xls,
-  zip
-};
+  enum BuiltInIconType
+  {
+    Default = 0,
+    Doc = 1,
+    Exe = 2,
+    Ppt = 3,
+    Rar = 4,
+    Txt = 5,
+    Xls = 6,
+    Zip = 7
+  };
+}
 
 struct UsrProfileStruct
 {
-  QString key_str;
-  QString name_str;
-  QString avatar_str;
-  QString ip_str = "Offline";
+  QString key;
+  QString name;
+  QString avatar;
+  QString ip = "Offline";
 };
 bool operator !=(const UsrProfileStruct &arg1 , const UsrProfileStruct &arg2);
 bool operator ==(const UsrProfileStruct &arg1 , const UsrProfileStruct &arg2);
 
-namespace Message {
-  enum MessageType{
+struct UpdateStruct
+{
+  int version[3];
+  QString message;
+  QString title;
+};
+
+namespace Message
+{
+  enum MessageType
+  {
     TextMessage,
     FileInfo
   };
@@ -66,33 +81,48 @@ namespace Message {
   {
     QString index;
     QString name;
-    QString size;
-    QString type;
+    int size;
+    GUI::BuiltInIconType type;
   };
 
 }
 
-namespace Settings {
-  enum Notification{
-    ShowCount,
-    ShowDetail,
-    None
+namespace Settings
+{
+  struct Notification
+  {
+    bool update_notification;
+    bool message_notification;
+    bool message_detail_notification;
   };
 
-  struct SettingStruct
+  struct Update
   {
+    bool auto_check_update;
+    bool auto_update;
+  };
+
+  struct SettingsStruct
+  {
+    bool modified_lock;
+
+    int window_width;
+    int window_height;
+
     QColor chat_bubble_color_i;
     QColor chat_bubble_color_o;
+
     QString profile_avatar_str;
     QString profile_name_str;
     QString profile_key_str;
+
     Notification notification;
+    Update update;
   };
-  bool operator !=(const SettingStruct &arg1 , const SettingStruct &arg2);
-  bool operator ==(const SettingStruct &arg1 , const SettingStruct &arg2);
+//  bool operator !=(const SettingsStruct &arg1 , const SettingsStruct &arg2);
+//  bool operator ==(const SettingsStruct &arg1 , const SettingsStruct &arg2);
 
 }
-
 
 
 #endif // GLOBALTYPE_H

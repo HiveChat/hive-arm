@@ -5,7 +5,7 @@ UsrData::UsrData(QString *myKey, const UsrProfileStruct &usrProfileStruct, QObje
 {
   my_key = myKey;
   this->setUsrProfileStruct(usrProfileStruct);
-  history_path = usr_path + usr_profile_struct.key_str;
+  history_path = usr_path + usr_profile_struct.key;
   this->checkDir(history_path);
   this->readHistoryBundle();
 
@@ -52,6 +52,10 @@ QJsonArray* UsrData::flipUp()
     {
       return &history_bundle_list[current_history_bundle_index];
     }
+  else
+    {
+      return NULL;
+    }
 }
 
 QJsonArray* UsrData::flipDown()
@@ -64,6 +68,10 @@ QJsonArray* UsrData::flipDown()
   else if(current_history_bundle_index < latest_history_bundle_index)
     {
       return &history_bundle_list[current_history_bundle_index];
+    }
+  else
+    {
+      return NULL;
     }
 }
 
